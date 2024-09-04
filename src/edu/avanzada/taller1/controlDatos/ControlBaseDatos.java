@@ -50,4 +50,37 @@ public class ControlBaseDatos {
         persona.setSituacionMilitar(nuevoEstado);
         ingresarUsuario(persona, nuevoEstado);
     }
+
+    public boolean verificarArrays(int cedula){
+        
+        for (Persona p : listaAplazados) {
+            if(p.getCedula() == cedula){
+                return true;
+            
+            } 
+
+        }
+        for (Persona p : listaReclutados) {
+            if(p.getCedula() == cedula){
+                return true;
+            
+            } 
+            
+        }
+        for (Persona p : listaRemisos) {
+            if(p.getCedula() == cedula){
+                return true;
+            
+            } 
+            
+        }
+        for (Persona p : listaReservistas) {
+            if(p.getCedula() == cedula){
+                return true;
+            
+            } 
+            
+        }
+        return false;
+    }
 }

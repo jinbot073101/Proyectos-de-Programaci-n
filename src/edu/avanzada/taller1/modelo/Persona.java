@@ -36,7 +36,7 @@ public abstract class Persona {
     }
 
     public void setSituacionMilitar(String situacionMilitar){
-        this.situacionMilitar=situacionMilitar;
+        this.situacionMilitar = situacionMilitar;
     }
     
     public abstract void getDatos();

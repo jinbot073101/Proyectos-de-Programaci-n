@@ -7,7 +7,6 @@ import java.util.ArrayList;
  * en la que se imprimen los objetos guardados con sus respectivos datos.
  * Accede a los distintos ArrayLists de cada tipo de persona y los recorre
  */
-
 public class Reporte {
 
     private final InterfaceControl controlAplazado;
@@ -15,8 +14,10 @@ public class Reporte {
     private final InterfaceControl controlRemiso;
     private final InterfaceControl controlReservista;
 
+
     public Reporte(InterfaceControl aplazado, InterfaceControl reclutado, InterfaceControl remiso,
             InterfaceControl reservista) {
+                
         this.controlAplazado = aplazado;
         this.controlReclutado = reclutado;
         this.controlRemiso = remiso;
@@ -43,13 +44,19 @@ public class Reporte {
         System.out.println(" >> Generando reporte en la base de datos de los " + tipo + "...");
         ArrayList<Persona> lista = control.getLista();
         Thread.sleep(3000); // Pausa por 3 segundos
-        if (lista.isEmpty()) {
-            System.out.println("\n<< No se ha registrado ningún usuario en la base de datos de los " + tipo + ". >>");
-        } else {
-            for (Persona persona : lista) {
-                Thread.sleep(1000);
-                persona.getDatos();
-            }
+
+        if(lista.isEmpty()){
+            System.out.println("No hay datos disponibles para el reporte de " + tipo);
+            return;
         }
+
+        for (Persona persona : lista) {
+            Thread.sleep(1000);
+            persona.getDatos();
+        }
+
     }
+
+
+
 }

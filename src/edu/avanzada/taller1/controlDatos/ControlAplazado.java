@@ -26,7 +26,7 @@ public class ControlAplazado implements InterfaceControl {
     // ArrayList
     @Override
     public void ingresarPersona(int cedula) {
-        if (verificarArray(cedula)) {
+        if (controlDatos.verificarArrays(cedula)) {
             System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
         } else {
             Persona aplazado = crearAplazado(cedula);// uso del método

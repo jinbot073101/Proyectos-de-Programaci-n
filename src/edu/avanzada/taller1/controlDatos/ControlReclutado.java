@@ -26,8 +26,8 @@ public class ControlReclutado implements InterfaceControl {
     // ArrayList
     @Override
     public void ingresarPersona(int cedula) {
-        if (verificarArray(cedula)) {
-            System.out.println("Ya se a registrado un usuario con este número.\n");
+        if (controlDatos.verificarArrays(cedula)) {
+            System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
         } else {
             Persona reclutado = crearReclutado(cedula);// uso del método
             controlDatos.ingresarUsuario(reclutado, "Reclutado");

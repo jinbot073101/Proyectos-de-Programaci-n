@@ -14,7 +14,7 @@ public class ControlRemiso implements InterfaceControl {
 
     private final Scanner input;
     private ArrayList<Persona> baseDatosRemisos = new ArrayList<>();
-    private ControlBaseDatos controlDatos;
+    private final ControlBaseDatos controlDatos;
 
     public ControlRemiso(ControlBaseDatos controlDatos) {
         input = new Scanner(System.in);
@@ -26,8 +26,8 @@ public class ControlRemiso implements InterfaceControl {
     // ArrayList
     @Override
     public void ingresarPersona(int cedula) {
-        controlDatos = new ControlBaseDatos();
-        if (verificarArray(cedula)) {
+
+        if (controlDatos.verificarArrays(cedula)) {
             System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
         } else {
             Persona remiso = crearRemiso(cedula);// uso del método
@@ -116,6 +116,8 @@ public class ControlRemiso implements InterfaceControl {
 
     @Override
     public ArrayList<Persona> getLista() {
+
+        baseDatosRemisos = controlDatos.getListaPorEstado("Remiso");
         return baseDatosRemisos;
     }
 

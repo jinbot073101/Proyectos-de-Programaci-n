@@ -1,10 +1,9 @@
 package edu.avanzada.taller1.controlDatos;
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 import edu.avanzada.taller1.modelo.Persona;
 import edu.avanzada.taller1.modelo.Reservista;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 /*Esta clase se encarga de gestionar y manejar los datos de una persona reservista y 
 sus diferentes interacciones con el respectivo ArrayList encargado de almacenar los
@@ -26,7 +25,7 @@ public class ControlReservista implements InterfaceControl {
     // ArrayList
     @Override
     public void ingresarPersona(int cedula) {
-        if (verificarArray(cedula)) {
+        if (controlDatos.verificarArrays(cedula)) {
             System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
         } else {
             Persona reservista = crearReservista(cedula);// uso del método
