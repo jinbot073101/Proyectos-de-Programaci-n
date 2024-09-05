@@ -5,9 +5,10 @@ import edu.avanzada.taller1.modelo.Reclutado;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*Esta clase se encarga de gestionar y manejar los datos de una persona reclutada y 
-sus diferentes interacciones con el respectivo ArrayList encargado de almacenar estos
-objetos.
+/**
+ * Esta clase se encarga de gestionar y manejar los datos de personas reclutadas.
+ * Permite registrar nuevas personas, consultar datos, cambiar su situación militar
+ * y gestionar una lista de personas en estado "Reclutado".
  */
 
 public class ControlReclutado implements InterfaceControl {
@@ -16,50 +17,79 @@ public class ControlReclutado implements InterfaceControl {
     private ArrayList<Persona> baseDatosReclutados = new ArrayList<>();
     private final ControlBaseDatos controlDatos;
 
+    /**
+     * Constructor que inicializa el controlador de la base de datos y la lista de personas reclutadas.
+     * 
+     * @param controlDatos instancia del controlador que maneja la base de datos de todas las personas.
+     */
+
     public ControlReclutado(ControlBaseDatos controlDatos) {
         input = new Scanner(System.in);
         this.controlDatos = controlDatos;
-        this.baseDatosReclutados = controlDatos.getListaPorEstado("Reclutado");
+        this.baseDatosReclutados = controlDatos.getListaPorEstado("Reclutado"); // Inicialización de la lista específica
     }
 
-    // Utiliza el objeto creado en el método crearReclutado para ingresarlo al
-    // ArrayList
+    /**
+     * Método para ingresar una persona en estado "Reclutado".
+     * Verifica si la persona ya está registrada antes de crear un nuevo objeto y añadirlo a la lista.
+     * 
+     * @param cedula el número de cédula de la persona a ingresar.
+     */
     @Override
     public void ingresarPersona(int cedula) {
         if (controlDatos.verificarArrays(cedula)) {
             System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
+
         } else {
             Persona reclutado = crearReclutado(cedula);// uso del método
             controlDatos.ingresarUsuario(reclutado, "Reclutado");
+            mostrarArray();
+           
         }
     }
-
-    // Crea un objeto reclutado junto con sus respectivos datos
-    private Persona crearReclutado(int cedula) {
+    
+   
+    /**
+     * Método que crea un objeto de tipo {@link Reclutado} con los datos ingresados por el usuario.
+     * 
+     * @param cedula el número de cédula de la persona reclutada.
+     * @return un objeto de tipo {@link Persona} con los datos de la persona reclutada.
+     */
+    
+     private Persona crearReclutado(int cedula) {
         Reclutado reclutado = new Reclutado();
         System.out.println("Ingrese un nombre: ");
         String nombre = input.nextLine();
+        reclutado.setNombre(nombre);
+        
         System.out.println("Ingrese un apellido: ");
         String apellido = input.nextLine();
-        System.out.println("Ingrese el código de reclutamiento:");
-        long codigoReclutado = input.nextLong();
-
-        reclutado.setCedula(cedula);
-        reclutado.setNombre(nombre);
         reclutado.setApellido(apellido);
+        
+        System.out.println("Ingrese el código de reclutamiento:");
+        while (!input.hasNextLong()) {
+            System.out.println("Código inválido. Por favor, ingrese un número válido:");
+            input.next(); // Consume el input inválido
+        }
+        long codigoReclutado = input.nextLong();
         reclutado.setCodigoReclutado(codigoReclutado);
-        reclutado.setSituacionMilitar("Reclutado");
+        reclutado.setCedula(cedula);
 
+        
+        // Consumir el salto de línea restante después de nextLong()
+        input.nextLine();
         return reclutado;
     }
 
-    // Busca un objeto reclutado dentro del ArrayList y retorna su información al
-    // encontralo
-    @Override
-    public void consultarPersona() {
-        if (baseDatosReclutados.isEmpty()) {
-            System.out.println("\n<< No se ha registrado ningún usuario reclutado en la base de datos. >>\n");
-        } else {
+    /**
+     * Método para consultar los datos de una persona en estado "Reclutado".
+     * Solicita la cédula del usuario a consultar y muestra su información si se encuentra en la lista.
+     */
+        @Override
+        public void consultarPersona() {
+            if (baseDatosReclutados.isEmpty()) {
+                System.out.println("\n<< No se ha registrado ningún usuario reclutado en la base de datos. >>\n");
+            } else {
             System.out.println("Número de cédula de la persona a consultar: ");
             int cedula = input.nextInt();
             input.nextLine(); // Consumir la nueva línea
@@ -78,8 +108,10 @@ public class ControlReclutado implements InterfaceControl {
         }
     }
 
-    // Gestiona y valida el cambio del objeto reclutado a un nuevo tipo de estado
-    // militar
+    /**
+     * Método para cambiar la situación militar de una persona en estado "Reclutado".
+     * Solicita la cédula de la persona y permite cambiar su situación a otro estado militar disponible.
+     */
     @Override
     public void cambiarSituacion() {
         System.out.println("Digite número de cédula: ");
@@ -116,13 +148,24 @@ public class ControlReclutado implements InterfaceControl {
         }
     }
 
+
+    /**
+     * Retorna la lista de personas en estado "Reclutado".
+     * 
+     * @return un {@link ArrayList} de personas en estado reclutado.
+     */
     @Override
     public ArrayList<Persona> getLista() {
+        baseDatosReclutados = controlDatos.getListaPorEstado("Reclutado"); 
         return baseDatosReclutados;
     }
 
-    // ejecuta el proceso de verificar si una cédula ya ha sido registrada antes en
-    // el ArrayList
+   /**
+     * Verifica si una persona con la cédula dada ya está registrada en la lista de reclutados.
+     * 
+     * @param cedula el número de cédula de la persona a verificar.
+     * @return true si la persona está registrada, false en caso contrario.
+     */
     private boolean verificarArray(int cedula) {
         boolean encontrado = false;
         for (Persona val : baseDatosReclutados) {
@@ -132,6 +175,18 @@ public class ControlReclutado implements InterfaceControl {
             }
         }
         return encontrado;
+    }
+
+    /**
+     * Muestra la lista completa de personas reclutadas almacenadas en el ArrayList.
+     */
+    public void mostrarArray(){
+        
+        for (Persona val : baseDatosReclutados) {
+           val.getDatos();
+        }
+
+
     }
 
 }

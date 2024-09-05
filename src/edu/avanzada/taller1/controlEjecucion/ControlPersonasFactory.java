@@ -7,12 +7,21 @@ import edu.avanzada.taller1.controlDatos.ControlRemiso;
 import edu.avanzada.taller1.controlDatos.ControlReservista;
 import edu.avanzada.taller1.controlDatos.InterfaceControl;
 
-/*Esta clase se encarga de ser la intermediaria entre la fachada y el controlDatos con los controladores
- * de cada tipo de persona. Utilizando una fábrica que crea instancias de los controladores
- * según lo que el flujo del programa lo requiera
+/**
+ * La clase <code>ControlPersonasFactory</code> actúa como una fábrica para crear instancias de los
+ * controladores de personas según el flujo del programa. Se encarga de proporcionar una instancia de
+ * <code>ControlPersonas</code> que gestiona los diferentes tipos de controladores de personas.
  */
 
 public class ControlPersonasFactory {
+
+    /**
+     * Crea e inicializa una instancia de <code>ControlPersonas</code> con los controladores específicos
+     * para cada tipo de persona, utilizando una instancia de <code>ControlBaseDatos</code>.
+     * 
+     * @return una instancia de <code>ControlPersonas</code> que contiene los controladores para los
+     *         diferentes tipos de personas (Remiso, Reclutado, Reservista, Aplazado)
+     */
 
     public static ControlPersonas createControlPersonas() {
         ControlBaseDatos controlDatos = new ControlBaseDatos();

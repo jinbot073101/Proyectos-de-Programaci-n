@@ -5,35 +5,54 @@ import edu.avanzada.taller1.modelo.Reservista;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*Esta clase se encarga de gestionar y manejar los datos de una persona reservista y 
-sus diferentes interacciones con el respectivo ArrayList encargado de almacenar los
-objetos de esta clase.
+/**
+ * Esta clase se encarga de gestionar y manejar los datos de personas en estado "Reservista".
+ * Permite registrar nuevas personas, consultar datos, cambiar su situación militar
+ * y gestionar una lista de personas en estado "Reservista".
  */
 
 public class ControlReservista implements InterfaceControl {
     private final ControlBaseDatos controlDatos;
     private ArrayList<Persona> baseDatosReservistas = new ArrayList<>();
     private final Scanner input;
-
+    
+    /**
+     * Constructor que inicializa el controlador de la base de datos y la lista de personas reservistas.
+     * 
+     * @param controlDatos instancia del controlador que maneja la base de datos de todas las personas.
+     */
     public ControlReservista(ControlBaseDatos controlDatos) {
         input = new Scanner(System.in);
         this.controlDatos = controlDatos;
         this.baseDatosReservistas = controlDatos.getListaPorEstado("Reservista");
     }
 
-    // Utiliza el objeto creado en el método crearReclutado para ingresarlo al
-    // ArrayList
+    /**
+     * Método para ingresar una persona en estado "Reservista".
+     * Verifica si la persona ya está registrada antes de crear un nuevo objeto y añadirlo a la lista.
+     * 
+     * @param cedula el número de cédula de la persona a ingresar.
+     */
     @Override
     public void ingresarPersona(int cedula) {
         if (controlDatos.verificarArrays(cedula)) {
             System.out.println("Ya se a registrado un usuario con este número de cédula.\n");
         } else {
+            System.out.println("Persona agregada exitosamente...\n");
+
             Persona reservista = crearReservista(cedula);// uso del método
             controlDatos.ingresarUsuario(reservista, "Reservista");
+            mostrarArray();
+            
         }
     }
 
-    // Crea un objeto reclutado junto con sus respectivos datos
+    /**
+     * Método que crea un objeto de tipo {@link Reservista} con los datos ingresados por el usuario.
+     * 
+     * @param cedula el número de cédula de la persona reservista.
+     * @return un objeto de tipo {@link Persona} con los datos de la persona reservista.
+     */
     private Persona crearReservista(int cedula) {
         Reservista reservista = new Reservista();
         System.out.println("Ingrese un nombre: ");
@@ -53,8 +72,10 @@ public class ControlReservista implements InterfaceControl {
         return reservista;
     }
 
-    // Busca un objeto reclutado dentro del ArrayList y retorna su información al
-    // encontralo
+    /**
+     * Método para consultar los datos de una persona en estado "Reservista".
+     * Solicita la cédula del usuario a consultar y muestra su información si se encuentra en la lista.
+     */
     @Override
     public void consultarPersona() {
         if (baseDatosReservistas.isEmpty()) {
@@ -78,8 +99,10 @@ public class ControlReservista implements InterfaceControl {
         }
     }
 
-    // Gestiona y valida el cambio del objeto reclutado a un nuevo tipo de estado
-    // militar
+    /**
+     * Método para cambiar la situación militar de una persona en estado "Reservista".
+     * Solicita la cédula de la persona y permite cambiar su situación a otro estado militar disponible.
+     */
     @Override
     public void cambiarSituacion() {
         System.out.println("Digite número de cédula: ");
@@ -112,13 +135,25 @@ public class ControlReservista implements InterfaceControl {
         }
     }
 
+
+   /**
+     * Retorna la lista de personas en estado "Reservista".
+     * 
+     * @return un {@link ArrayList} de personas en estado reservista.
+     */
     @Override
     public ArrayList<Persona> getLista() {
+        baseDatosReservistas = controlDatos.getListaPorEstado("Reservista");
         return baseDatosReservistas;
     }
 
-    // ejecuta el proceso de verificar si una cédula ya ha sido registrada antes en
-    // el ArrayList
+    /**
+     * Verifica si una persona con la cédula dada ya está registrada en la lista de reservistas.
+     * 
+     * @param cedula el número de cédula de la persona a verificar.
+     * @return true si la persona está registrada, false en caso contrario.
+     */
+
     private boolean verificarArray(int cedula) {
         boolean encontrado = false;
         for (Persona val : baseDatosReservistas) {
@@ -128,6 +163,17 @@ public class ControlReservista implements InterfaceControl {
             }
         }
         return encontrado;
+    }
+
+    /**
+     * Muestra la lista completa de personas reservistas almacenadas en el ArrayList.
+     */
+        public void mostrarArray(){
+        for (Persona val : baseDatosReservistas) {
+           val.getDatos();
+        }
+
+
     }
 
 }

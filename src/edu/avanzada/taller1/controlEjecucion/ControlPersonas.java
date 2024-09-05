@@ -14,15 +14,32 @@ public class ControlPersonas {
     private final InterfaceControl controlReservista;
     private final InterfaceControl controlAplazado;
 
+    /**
+     * Constructor para inicializar los controladores de las diferentes situaciones militares.
+     *
+     * @param controlRemiso el controlador para personas con estado Remiso
+     * @param controlReclutado el controlador para personas con estado Reclutado
+     * @param controlReservista el controlador para personas con estado Reservista
+     * @param controlAplazado el controlador para personas con estado Aplazado
+     */
+
     public ControlPersonas(InterfaceControl controlRemiso, InterfaceControl controlReclutado,
             InterfaceControl controlReservista, InterfaceControl controlAplazado) {
+                
         this.controlRemiso = controlRemiso;
         this.controlReclutado = controlReclutado;
         this.controlReservista = controlReservista;
         this.controlAplazado = controlAplazado;
     }
 
+    /**
+     * Método que permite ingresar una persona al sistema según su situación militar.
+     * Solicita al usuario que seleccione la situación militar y luego pide la cédula de la persona.
+     * Dependiendo de la selección, se llama al controlador correspondiente para ingresar la persona.
+     */
+
     public void ingresarPersona() {
+
         int cedula;
         input = new Scanner(System.in);
         /*
@@ -58,6 +75,13 @@ public class ControlPersonas {
         }
     }
 
+
+
+    /**
+     * Método que permite consultar una persona en el sistema según su situación militar.
+     * Solicita al usuario que ingrese la situación militar para filtrar la búsqueda.
+     * Luego llama al controlador correspondiente para realizar la consulta.
+     */
     public void consultarPersona() {
         input = new Scanner(System.in);
         // Preguntar al usuario por la situación militar para filtrar la consulta
@@ -82,12 +106,18 @@ public class ControlPersonas {
         }
     }
 
+    /**
+     * Método que permite cambiar la situación militar de una persona en el sistema.
+     * Solicita al usuario la situación militar de la persona y luego llama al controlador correspondiente
+     * para modificar la situación de la persona.
+     */
     public void cambiarSituacion() {
         input = new Scanner(System.in);
         System.out.println(
                 "\n > Ingrese la situación militar de la persona a consultar para buscar en la base de datos:");
         System.out.println(" [Reservista | Remiso | Aplazado | Reclutado]");
         String opcion = input.nextLine();
+
         // Redirigir al metodo consultarPersona de cada controlador
         if (opcion.equalsIgnoreCase("RESERVISTA")) {
             System.out.println("\n<< Buscando por estado: Reservista >>\n");
@@ -105,4 +135,6 @@ public class ControlPersonas {
             System.out.println("NO SE RECONOCE ESTA OPCIÓN");
         }
     }
+
+    
 }

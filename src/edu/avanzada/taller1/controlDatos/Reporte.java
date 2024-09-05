@@ -1,62 +1,52 @@
+
 package edu.avanzada.taller1.controlDatos;
 
 import edu.avanzada.taller1.modelo.Persona;
 import java.util.ArrayList;
 
-/*Esta clase se encarga de generar un reporte por cada ArrayList
- * en la que se imprimen los objetos guardados con sus respectivos datos.
- * Accede a los distintos ArrayLists de cada tipo de persona y los recorre
- */
+
 public class Reporte {
 
-    private final InterfaceControl controlAplazado;
-    private final InterfaceControl controlReclutado;
-    private final InterfaceControl controlRemiso;
-    private final InterfaceControl controlReservista;
+    private final ControlAplazado controlAplazado;
+    private final ControlReclutado controlReclutado;
+    private final ControlRemiso controlRemiso;
+    private final ControlReservista controlReservista;
 
-
-    public Reporte(InterfaceControl aplazado, InterfaceControl reclutado, InterfaceControl remiso,
-            InterfaceControl reservista) {
-                
+    public Reporte(ControlAplazado aplazado, ControlReclutado reclutado, ControlRemiso remiso,
+    ControlReservista reservista) {
         this.controlAplazado = aplazado;
         this.controlReclutado = reclutado;
         this.controlRemiso = remiso;
         this.controlReservista = reservista;
     }
 
-    /*
-     * Aplica el método generarReportePorTipo a cada ArrayList según que tipo de
-     * objeto contiene
-     */
+
     public void generarReporte() {
-        try {
-            generarReportePorTipo(controlReservista, "reservistas");
-            generarReportePorTipo(controlRemiso, "remisos");
-            generarReportePorTipo(controlAplazado, "aplazados");
-            generarReportePorTipo(controlReclutado, "reclutados");
-        } catch (InterruptedException e) {
-            System.out.println("Error en la generación del reporte: " + e.getMessage());
-        }
+
+        controlReservista.mostrarArray();
+        System.out.println("array es de " + controlReservista.getLista().size());
+        
+        controlAplazado.mostrarArray();
+        controlRemiso.mostrarArray();
+        controlReclutado.mostrarArray();
+        generarReportePorTipo(controlReservista, "reservistas");
+        generarReportePorTipo(controlRemiso, "remisos");
+        generarReportePorTipo(controlAplazado, "aplazados");
+        generarReportePorTipo(controlReclutado, "reclutados");
     }
 
-    // Genera el reporte en un ArrayList concreto
-    private void generarReportePorTipo(InterfaceControl control, String tipo) throws InterruptedException {
-        System.out.println(" >> Generando reporte en la base de datos de los " + tipo + "...");
+    private void generarReportePorTipo(InterfaceControl control, String tipo) {
+        System.out.println("\n >> Reporte de " + tipo + ":");
         ArrayList<Persona> lista = control.getLista();
-        Thread.sleep(3000); // Pausa por 3 segundos
 
-        if(lista.isEmpty()){
+        System.out.println("Tamaño de la lista de " + tipo + ": " + lista.size());
+
+        if (lista.isEmpty()) {
             System.out.println("No hay datos disponibles para el reporte de " + tipo);
-            return;
+        } else {
+            for (Persona persona : lista) {
+                persona.getDatos();
+            }
         }
-
-        for (Persona persona : lista) {
-            Thread.sleep(1000);
-            persona.getDatos();
-        }
-
     }
-
-
-
 }

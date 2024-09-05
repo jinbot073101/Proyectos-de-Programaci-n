@@ -25,6 +25,8 @@ public class ControlBaseDatos {
             case "Aplazado" -> listaAplazados;
             case "Reclutado" -> listaReclutados;
             default -> throw new IllegalArgumentException("Estado no reconocido");
+
+             
         };
     }
 
@@ -82,5 +84,26 @@ public class ControlBaseDatos {
             
         }
         return false;
+    }
+
+    public void MostrarArrays(){
+        
+        for (Persona p : listaAplazados) {
+            p.getDatos(); 
+
+        }
+        for (Persona p : listaReclutados) {
+            p.getDatos();
+            
+        }
+        for (Persona p : listaRemisos) {
+            p.getDatos();
+            
+        }
+        for (Persona p : listaReservistas) {
+            p.getDatos();
+            
+        }
+        
     }
 }

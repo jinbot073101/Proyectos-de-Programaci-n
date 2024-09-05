@@ -5,9 +5,10 @@ import edu.avanzada.taller1.modelo.Remiso;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/*Esta clase se encarga de gestionar y manejar los datos de una persona remiso y 
-sus diferentes interacciones con el respectivo ArrayList encargado de almacenar los
-objetos de esta clase.
+/**
+ * Esta clase se encarga de gestionar y manejar los datos de personas en estado "Remiso".
+ * Permite registrar nuevas personas, consultar datos, cambiar su situación militar
+ * y gestionar una lista de personas en estado "Remiso".
  */
 
 public class ControlRemiso implements InterfaceControl {
@@ -16,14 +17,24 @@ public class ControlRemiso implements InterfaceControl {
     private ArrayList<Persona> baseDatosRemisos = new ArrayList<>();
     private final ControlBaseDatos controlDatos;
 
+    /**
+     * Constructor que inicializa el controlador de la base de datos y la lista de personas remisas.
+     * 
+     * @param controlDatos instancia del controlador que maneja la base de datos de todas las personas.
+     */
+
     public ControlRemiso(ControlBaseDatos controlDatos) {
         input = new Scanner(System.in);
         this.controlDatos = controlDatos;
         this.baseDatosRemisos = controlDatos.getListaPorEstado("Remiso");
     }
 
-    // Utiliza el objeto creado en el método crearRemiso para ingresarlo al
-    // ArrayList
+     /**
+     * Método para ingresar una persona en estado "Remiso".
+     * Verifica si la persona ya está registrada antes de crear un nuevo objeto y añadirlo a la lista.
+     * 
+     * @param cedula el número de cédula de la persona a ingresar.
+     */
     @Override
     public void ingresarPersona(int cedula) {
 
@@ -32,10 +43,18 @@ public class ControlRemiso implements InterfaceControl {
         } else {
             Persona remiso = crearRemiso(cedula);// uso del método
             controlDatos.ingresarUsuario(remiso, "Remiso");
+            mostrarArray();
+            
+
         }
     }
 
-    // Crea un objeto remiso junto con sus respectivos datos
+    /**
+     * Método que crea un objeto de tipo {@link Remiso} con los datos ingresados por el usuario.
+     * 
+     * @param cedula el número de cédula de la persona remisa.
+     * @return un objeto de tipo {@link Persona} con los datos de la persona remisa.
+     */    
     private Persona crearRemiso(int cedula) {
         Remiso remiso = new Remiso();
         System.out.println("Ingrese un nombre: ");
@@ -51,8 +70,10 @@ public class ControlRemiso implements InterfaceControl {
         return remiso;
     }
 
-    // Busca un objeto remiso dentro del ArrayList y retorna su información al
-    // encontralo
+   /**
+     * Método para consultar los datos de una persona en estado "Remiso".
+     * Solicita la cédula del usuario a consultar y muestra su información si se encuentra en la lista.
+     */
     @Override
     public void consultarPersona() {
         if (baseDatosRemisos.isEmpty()) {
@@ -76,9 +97,11 @@ public class ControlRemiso implements InterfaceControl {
         }
     }
 
-    // Gestiona y valida el cambio del objeto remiso a un nuevo tipo de estado
-    // militar
-    @Override
+     /**
+     * Método para cambiar la situación militar de una persona en estado "Remiso".
+     * Solicita la cédula de la persona y permite cambiar su situación a otro estado militar disponible.
+     */
+        @Override
     public void cambiarSituacion() {
         System.out.println("Digite número de cédula: ");
         int cedula = input.nextInt();
@@ -114,6 +137,12 @@ public class ControlRemiso implements InterfaceControl {
         }
     }
 
+
+    /**
+     * Retorna la lista de personas en estado "Remiso".
+     * 
+     *@return un {@link ArrayList} de personas en estado remiso.
+     */
     @Override
     public ArrayList<Persona> getLista() {
 
@@ -121,8 +150,12 @@ public class ControlRemiso implements InterfaceControl {
         return baseDatosRemisos;
     }
 
-    // ejecuta el proceso de verificar si una cédula ya ha sido registrada antes en
-    // el ArrayList
+/**
+     * Verifica si una persona con la cédula dada ya está registrada en la lista de remisos.
+     * 
+     * @param cedula el número de cédula de la persona a verificar.
+     * @return true si la persona está registrada, false en caso contrario.
+     */
     private boolean verificarArray(int cedula) {
         boolean encontrado = false;
         for (Persona val : baseDatosRemisos) {
@@ -132,6 +165,17 @@ public class ControlRemiso implements InterfaceControl {
             }
         }
         return encontrado;
+    }
+
+    /**
+     * Muestra la lista completa de personas remisas almacenadas en el ArrayList.
+     */
+    public void mostrarArray(){
+        for (Persona val : baseDatosRemisos) {
+           val.getDatos();
+        }
+
+
     }
 
 }
