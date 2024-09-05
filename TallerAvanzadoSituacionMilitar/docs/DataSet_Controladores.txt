@@ -1,0 +1,64 @@
+{
+  "aplazados": [
+    {
+      "cedula": 1001,
+      "nombre": "Carlos",
+      "apellido": "Mendoza",
+      "situacionMilitar": "Aplazado",
+      "fechaAplazado": "2024-12-01"
+    },
+    {
+      "cedula": 1002,
+      "nombre": "Lucía",
+      "apellido": "Vargas",
+      "situacionMilitar": "Aplazado",
+      "fechaAplazado": "2024-11-15"
+    }
+  ],
+  "reclutados": [
+    {
+      "cedula": 2001,
+      "nombre": "David",
+      "apellido": "López",
+      "situacionMilitar": "Reclutado",
+      "codigoReclutado": 123456
+    },
+    {
+      "cedula": 2002,
+      "nombre": "Ana",
+      "apellido": "García",
+      "situacionMilitar": "Reclutado",
+      "codigoReclutado": 654321
+    }
+  ],
+  "remisos": [
+    {
+      "cedula": 3001,
+      "nombre": "Jorge",
+      "apellido": "Ramírez",
+      "situacionMilitar": "Remiso"
+    },
+    {
+      "cedula": 3002,
+      "nombre": "María",
+      "apellido": "Pérez",
+      "situacionMilitar": "Remiso"
+    }
+  ],
+  "reservistas": [
+    {
+      "cedula": 4001,
+      "nombre": "Sergio",
+      "apellido": "Martínez",
+      "situacionMilitar": "Reservista",
+      "numeroLibretaMilitar": 789012
+    },
+    {
+      "cedula": 4002,
+      "nombre": "Laura",
+      "apellido": "Sánchez",
+      "situacionMilitar": "Reservista",
+      "numeroLibretaMilitar": 210987
+    }
+  ]
+}

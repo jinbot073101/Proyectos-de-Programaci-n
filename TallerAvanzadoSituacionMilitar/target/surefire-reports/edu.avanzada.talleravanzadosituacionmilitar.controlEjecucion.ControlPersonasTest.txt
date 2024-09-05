@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.avanzada.talleravanzadosituacionmilitar.controlEjecucion.ControlPersonasTest
+-------------------------------------------------------------------------------
+Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.380 s -- in edu.avanzada.talleravanzadosituacionmilitar.controlEjecucion.ControlPersonasTest

@@ -1,0 +1,16 @@
+edu\avanzada\talleravanzadosituacionmilitar\modelo\Aplazado.class
+edu\avanzada\talleravanzadosituacionmilitar\modelo\Remiso.class
+edu\avanzada\talleravanzadosituacionmilitar\controlEjecucion\Launcher.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\ControlReclutado.class
+edu\avanzada\talleravanzadosituacionmilitar\modelo\Reclutado.class
+edu\avanzada\talleravanzadosituacionmilitar\modelo\Persona.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\Reporte.class
+edu\avanzada\talleravanzadosituacionmilitar\controlEjecucion\ControlPersonas.class
+edu\avanzada\talleravanzadosituacionmilitar\modelo\Reservista.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\ControlBaseDatos.class
+edu\avanzada\talleravanzadosituacionmilitar\controlEjecucion\Fachada.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\InterfaceControl.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\ControlRemiso.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\ControlReservista.class
+edu\avanzada\talleravanzadosituacionmilitar\controlDatos\ControlAplazado.class
+edu\avanzada\talleravanzadosituacionmilitar\controlEjecucion\ControlPersonasFactory.class
