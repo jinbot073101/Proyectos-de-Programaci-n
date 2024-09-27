@@ -69,7 +69,7 @@ public class Fachada {
                 case 1 -> redireccion.ingresarPersona();
                 case 2 -> redireccion.consultarPersona();
                 case 3 -> redireccion.cambiarSituacion();
-                case 4 -> reporte.generarReporte();
+                case 4 -> redireccion.mostrarArray();
                 default -> System.out.println("ARGUMENTO INVÁLIDO.");
             }
 

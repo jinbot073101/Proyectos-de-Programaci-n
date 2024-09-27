@@ -1,6 +1,7 @@
 package edu.avanzada.taller1.controlEjecucion;
 
 import edu.avanzada.taller1.controlDatos.InterfaceControl;
+import edu.avanzada.taller1.modelo.Persona;
 import java.util.Scanner;
 
 /*Esta clase se encarga de manejar los distintos controladores de los objetos
@@ -134,6 +135,31 @@ public class ControlPersonas {
         } else {
             System.out.println("NO SE RECONOCE ESTA OPCIÓN");
         }
+    }
+
+    public void mostrarArray(){
+
+        controlReservista.mostrarArray();
+
+
+        for (Persona p : controlReservista.getLista()) {
+            p.getDatos();
+            
+        }
+
+        for (Persona p : controlRemiso.getLista()) {
+            p.getDatos();
+            
+        }
+        for (Persona p : controlReclutado.getLista()) {
+            p.getDatos();
+            
+        }
+        for (Persona p : controlAplazado.getLista()) {
+            p.getDatos();
+            
+        }
+
     }
 
     

@@ -11,6 +11,7 @@ public class Aplazado extends Persona{
 
     /**
      * Obtiene la fecha de aplazamiento.
+
      *
      * @return La fecha de aplazamiento en formato <code>String</code>.
      */

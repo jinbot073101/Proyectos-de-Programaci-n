@@ -18,6 +18,7 @@ public class ControlBaseDatos {
      * diferentes
      * implementaciones y modificaciones en el método cambiarUsuario
      */
+
     public ArrayList<Persona> getListaPorEstado(String estado) {
         return switch (estado) {
             case "Reservista" -> listaReservistas;

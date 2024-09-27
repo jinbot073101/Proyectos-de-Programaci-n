@@ -1,4 +1,3 @@
-
 package edu.avanzada.taller1.controlDatos;
 
 import edu.avanzada.taller1.modelo.Persona;
